@@ -166,3 +166,11 @@ uvicorn brainscan.api.app:app --reload
 streamlit run src/brainscan/ui/app.py
 airflow standalone
 ```
+
+---
+
+## 8. Tester le modèle InceptionV3 pré-entraîné
+
+Le notebook `notebooks/6-test-pretrained-classifier.ipynb` teste une image avec le modèle InceptionV3 pré-entraîné. Son checkpoint est inclus dans le dépôt à `models/classification/best_model.keras` ; après avoir cloné le dépôt, le notebook le charge automatiquement depuis cet emplacement.
+
+Le modèle utilise `tf_keras` et `tensorflow_hub` (déjà listés dans `requirements.txt`), attend des images RGB `299 × 299` normalisées dans `[0, 1]` et produit les classes `glioma`, `meningioma`, `notumor`, `pituitary`. Au premier chargement, une connexion Internet peut être nécessaire pour que TensorFlow Hub télécharge le backbone InceptionV3.
